@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 16 juil. 2026 à 13:22
+-- Généré le : mar. 21 juil. 2026 à 10:47
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -33,7 +33,17 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `nom` varchar(100) NOT NULL,
   `description` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `categories`
+--
+
+INSERT INTO `categories` (`id`, `nom`, `description`) VALUES
+(1, 'Cloud', 'Cloud Computing'),
+(2, 'DevOps', 'Docker Kubernetes CI/CD'),
+(3, 'Programming', 'Programming languages'),
+(4, 'Programmation', 'Toutes les compétences de développement');
 
 -- --------------------------------------------------------
 
@@ -47,9 +57,18 @@ CREATE TABLE IF NOT EXISTS `competences` (
   `nom` varchar(150) NOT NULL,
   `description` text,
   `categorie_id` bigint NOT NULL,
+  `archive` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `fk_categorie` (`categorie_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `competences`
+--
+
+INSERT INTO `competences` (`id`, `nom`, `description`, `categorie_id`, `archive`) VALUES
+(1, 'Java', 'Java Programming Language', 3, 0),
+(2, 'Java', 'Développement Java', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -161,7 +180,37 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
 --
 
 INSERT INTO `utilisateurs` (`id`, `nom`, `prenom`, `email`, `mot_de_passe`, `role_id`, `manager_id`, `actif`, `created_at`, `poste`, `departement`) VALUES
-(3, 'Alami', 'All', 'alami@test.com', '123456', 2, NULL, 1, NULL, 'Développeur', 'Informatique');
+(3, 'Ali', 'Ahmed', 'ali@test.com', '123456', 2, NULL, 1, NULL, 'Développeur', 'Informatique');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `utilisateur_competence`
+--
+
+DROP TABLE IF EXISTS `utilisateur_competence`;
+CREATE TABLE IF NOT EXISTS `utilisateur_competence` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `utilisateur_id` bigint NOT NULL,
+  `competence_id` bigint NOT NULL,
+  `niveau_propose` tinyint NOT NULL,
+  `niveau_valide` tinyint DEFAULT NULL,
+  `statut` enum('EN_ATTENTE','VALIDE') DEFAULT 'EN_ATTENTE',
+  `date_creation` datetime DEFAULT CURRENT_TIMESTAMP,
+  `date_validation` datetime DEFAULT NULL,
+  `manager_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `utilisateur_id` (`utilisateur_id`,`competence_id`),
+  KEY `competence_id` (`competence_id`),
+  KEY `manager_id` (`manager_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `utilisateur_competence`
+--
+
+INSERT INTO `utilisateur_competence` (`id`, `utilisateur_id`, `competence_id`, `niveau_propose`, `niveau_valide`, `statut`, `date_creation`, `date_validation`, `manager_id`) VALUES
+(1, 3, 1, 4, 3, 'VALIDE', '2026-07-21 11:05:45', '2026-07-21 11:10:46', 3);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
