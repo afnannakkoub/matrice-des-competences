@@ -56,6 +56,10 @@ public interface UtilisateurCompetenceRepository
 
     // Find all evaluations for one skill
     List<UtilisateurCompetence> findByCompetenceId(Long competenceId);
+    long countByUtilisateurManagerIdAndStatut(
+            Long managerId,
+            StatutEvaluation statut
+    );
 
     // =====================================================
     // DASHBOARD / REPORTS

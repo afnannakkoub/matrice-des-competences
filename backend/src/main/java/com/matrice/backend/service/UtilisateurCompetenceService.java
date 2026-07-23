@@ -2,6 +2,7 @@ package com.matrice.backend.service;
 import com.matrice.backend.entity.Competence;
 import com.matrice.backend.entity.StatutEvaluation;
 import com.matrice.backend.entity.Utilisateur;
+import com.matrice.backend.DTO.*;
 import com.matrice.backend.entity.UtilisateurCompetence;
 import com.matrice.backend.repository.CompetenceRepository;
 import com.matrice.backend.repository.UtilisateurCompetenceRepository;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
+import java.util.ArrayList;
 @Service
 public class UtilisateurCompetenceService {
 
@@ -204,4 +205,47 @@ public class UtilisateurCompetenceService {
 
     }
 
+    // =====================================================
+// MANAGER
+// Pending validations
+// =====================================================
+
+    public List<PendingValidationDTO> getPendingValidations(Long managerId) {
+
+        List<UtilisateurCompetence> evaluations =
+                repository.findByUtilisateurManagerIdAndStatut(
+                        managerId,
+                        StatutEvaluation.EN_ATTENTE);
+
+        List<PendingValidationDTO> result = new ArrayList<>();
+
+        for (UtilisateurCompetence evaluation : evaluations) {
+
+            PendingValidationDTO dto = new PendingValidationDTO();
+
+            dto.setEvaluationId(evaluation.getId());
+
+            dto.setEmploye(
+                    evaluation.getUtilisateur().getNom()
+                            + " "
+                            + evaluation.getUtilisateur().getPrenom()
+            );
+
+            dto.setCompetence(
+                    evaluation.getCompetence().getNom()
+            );
+
+            dto.setNiveauPropose(
+                    evaluation.getNiveauPropose()
+            );
+
+            result.add(dto);
+        }
+
+        return result;
+    }
+
+
+
 }
+

@@ -1,8 +1,11 @@
 package com.matrice.backend.controller;
 
+import com.matrice.backend.DTO.SkillMatrixRowDTO;
 import com.matrice.backend.entity.Utilisateur;
 import com.matrice.backend.service.UtilisateurService;
 import org.springframework.web.bind.annotation.*;
+import com.matrice.backend.DTO.ManagerDashboardDTO;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -58,5 +61,33 @@ public class UtilisateurController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         service.delete(id);
+    }
+
+// =========================================
+// MANAGER
+// Get manager's team
+// =========================================
+
+    @GetMapping("/manager/{managerId}/equipe")
+    public List<Utilisateur> getEquipe(
+            @PathVariable Long managerId) {
+
+        return service.getEquipe(managerId);
+
+    }
+
+    @GetMapping("/manager/{managerId}/dashboard")
+    public ManagerDashboardDTO dashboard(
+            @PathVariable Long managerId) {
+
+        return service.getDashboard(managerId);
+
+    }
+    @GetMapping("/manager/{managerId}/matrix")
+    public List<SkillMatrixRowDTO> getSkillMatrix(
+            @PathVariable Long managerId) {
+
+        return service.getSkillMatrix(managerId);
+
     }
 }
