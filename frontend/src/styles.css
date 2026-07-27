@@ -1,1 +1,82 @@
-/* You can add global styles to this file, and also import other style files */
+/* ==========================================================
+   GLOBAL THEME
+========================================================== */
+
+:root {
+
+    --primary: #4F46E5;
+    --primary-dark: #3730A3;
+    --primary-light: #EEF2FF;
+
+    --background: #F5F6FA;
+
+    --white: #FFFFFF;
+
+    --text: #2D3748;
+
+    --gray: #E5E7EB;
+
+    --success: #10B981;
+
+    --danger: #EF4444;
+
+}
+
+html,
+body{
+
+    margin:0;
+    height:100%;
+
+    background:var(--background);
+
+    font-family:
+    "Segoe UI",
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
+
+}
+
+*{
+
+    box-sizing:border-box;
+
+}
+
+a{
+
+    text-decoration:none;
+
+}
+
+.page{
+
+    padding:30px;
+
+}
+
+.card{
+
+    border:none;
+
+    border-radius:18px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.btn-primary{
+
+    background:var(--primary);
+
+    border:none;
+
+}
+
+.btn-primary:hover{
+
+    background:var(--primary-dark);
+
+}
