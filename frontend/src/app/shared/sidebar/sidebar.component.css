@@ -11,6 +11,15 @@
     padding:30px 20px;
 
 }
+.sidebar a.active{
+
+    background:white;
+
+    color:#8048db;
+
+    font-weight:600;
+
+}
 
 .logo{
 

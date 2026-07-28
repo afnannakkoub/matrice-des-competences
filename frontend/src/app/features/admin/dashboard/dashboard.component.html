@@ -1,0 +1,105 @@
+<app-page-header
+title="Dashboard"
+subtitle="Welcome  Administrator">
+</app-page-header>
+
+<div class="row">
+
+    <div class="col-lg-4 mb-4">
+
+        <app-stat-card
+
+            title="Users"
+
+            [value]="dashboard?.totalUsers ?? 0"
+
+
+            icon="bi-people"
+
+            description="Registered users">
+
+        </app-stat-card>
+
+    </div>
+
+    <div class="col-lg-4 mb-4">
+
+        <app-stat-card
+
+            title="Skills"
+
+            [value]="dashboard?.totalCompetences ?? 0"
+
+            icon="bi-award"
+
+            description="Available competencies">
+
+        </app-stat-card>
+
+    </div>
+
+    <div class="col-lg-4 mb-4">
+
+        <app-stat-card
+
+            title="Categories"
+
+            [value]="dashboard?.totalCategories ?? 0"
+
+            icon="bi-tags"
+
+            description="Competency categories">
+
+        </app-stat-card>
+
+    </div>
+
+    <div class="col-lg-4 mb-4">
+
+        <app-stat-card
+
+            title="Managers"
+
+            [value]="dashboard?.totalManagers ?? 0"
+
+            icon="bi-person-workspace"
+
+            description="Team managers">
+
+        </app-stat-card>
+
+    </div>
+
+    <div class="col-lg-4 mb-4">
+
+        <app-stat-card
+
+            title="Employees"
+
+            [value]="dashboard?.totalEmployees ?? 0"
+
+            icon="bi-person"
+
+            description="Employees">
+
+        </app-stat-card>
+
+    </div>
+
+    <div class="col-lg-4 mb-4">
+
+        <app-stat-card
+
+            title="Pending"
+
+            [value]="dashboard?.pendingValidations ?? 0"
+
+            icon="bi-clock-history"
+
+            description="Waiting validation">
+
+        </app-stat-card>
+
+    </div>
+
+</div>

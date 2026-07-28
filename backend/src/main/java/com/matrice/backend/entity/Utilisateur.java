@@ -1,7 +1,6 @@
 package com.matrice.backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -32,11 +31,19 @@ public class Utilisateur {
 
     @ManyToOne
     @JoinColumn(name = "manager_id")
-    @JsonBackReference
+    @JsonIgnoreProperties({
+            "manager",
+            "equipe",
+            "motDePasse"
+    })
     private Utilisateur manager;
 
     @OneToMany(mappedBy = "manager")
-    @JsonManagedReference
+    @JsonIgnoreProperties({
+            "manager",
+            "equipe",
+            "motDePasse"
+    })
     private List<Utilisateur> equipe;
 
     @Column(nullable = false)

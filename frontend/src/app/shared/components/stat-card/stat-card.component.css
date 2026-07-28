@@ -1,0 +1,91 @@
+.stat-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+    height:180px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+h6{
+
+    color:#6B7280;
+
+    margin:0;
+
+}
+
+h2{
+
+    color:#4F46E5;
+
+    font-size:40px;
+
+    font-weight:bold;
+
+    margin-top:10px;
+
+}
+
+.icon{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:15px;
+
+    background:#EEF2FF;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.icon i{
+
+    color:#4F46E5;
+
+    font-size:28px;
+
+}
+
+p{
+
+    margin:0;
+
+    color:#9CA3AF;
+
+}

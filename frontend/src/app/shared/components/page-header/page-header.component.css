@@ -1,0 +1,29 @@
+.page-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+.page-header h2{
+
+    font-weight:700;
+
+    color:#2D3748;
+
+    margin:0;
+
+}
+
+.page-header p{
+
+    color:#6B7280;
+
+    margin-top:5px;
+
+}

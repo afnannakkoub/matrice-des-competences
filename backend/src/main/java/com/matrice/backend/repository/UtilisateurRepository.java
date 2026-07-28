@@ -17,6 +17,7 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long>{
     List<Utilisateur> findByManagerId(Long managerId);
 
     long countByManagerId(Long managerId);
-
+    long countByRoleNom(String roleNom);
+    long count();
 }
 

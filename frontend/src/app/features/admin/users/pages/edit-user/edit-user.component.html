@@ -1,0 +1,22 @@
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header">
+
+            <h3>Edit User</h3>
+
+        </div>
+
+        <div class="card-body">
+
+            
+            <app-user-form
+               [user]="user"
+             (saveUser)="update($event)">
+            </app-user-form>
+        </div>
+
+    </div>
+
+</div>

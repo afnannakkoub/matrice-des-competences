@@ -1,0 +1,35 @@
+.dashboard-card{
+
+    padding:25px;
+
+    border-radius:18px;
+
+    transition:.3s;
+
+    cursor:pointer;
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.dashboard-card h5{
+
+    color:#6B7280;
+
+    margin-bottom:15px;
+
+}
+
+.dashboard-card h2{
+
+    color:#4F46E5;
+
+    font-size:40px;
+
+    font-weight:bold;
+
+}
