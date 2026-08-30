@@ -1,0 +1,544 @@
+<div class="statistics-page">
+
+    <!-- ========================================= -->
+    <!-- HEADER -->
+    <!-- ========================================= -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                Statistics
+            </h1>
+
+            <p>
+                Overview of your team's competency performance
+            </p>
+
+        </div>
+
+        <button
+            class="refresh-button"
+            (click)="loadStatistics()"
+            [disabled]="loading">
+
+            ↻ Refresh
+
+        </button>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- ERROR -->
+    <!-- ========================================= -->
+
+    <div
+        *ngIf="error"
+        class="error-message">
+
+        {{ error }}
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- LOADING -->
+    <!-- ========================================= -->
+
+    <div
+        *ngIf="loading"
+        class="loading">
+
+        <div class="spinner"></div>
+
+        <span>
+            Loading statistics...
+        </span>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- CONTENT -->
+    <!-- ========================================= -->
+
+    <div
+        *ngIf="!loading && statistics"
+        class="statistics-content">
+
+
+        <!-- ===================================== -->
+        <!-- MAIN CARDS -->
+        <!-- ===================================== -->
+
+        <div class="stats-grid">
+
+
+            <!-- TOTAL EMPLOYEES -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👥
+                </div>
+
+                <div class="stat-info">
+
+                    <span class="stat-label">
+                        Total Employees
+                    </span>
+
+                    <span class="stat-value">
+                        {{ statistics.totalEmployees }}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- TOTAL COMPETENCIES -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🧠
+                </div>
+
+                <div class="stat-info">
+
+                    <span class="stat-label">
+                        Total Competencies
+                    </span>
+
+                    <span class="stat-value">
+                        {{ statistics.totalCompetencies }}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- VALIDATED -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ✓
+                </div>
+
+                <div class="stat-info">
+
+                    <span class="stat-label">
+                        Validated Competencies
+                    </span>
+
+                    <span class="stat-value">
+                        {{ statistics.validatedCompetencies }}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- PENDING -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ⏳
+                </div>
+
+                <div class="stat-info">
+
+                    <span class="stat-label">
+                        Pending Competencies
+                    </span>
+
+                    <span class="stat-value">
+                        {{ statistics.pendingCompetencies }}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- AVERAGE LEVEL -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ⭐
+                </div>
+
+                <div class="stat-info">
+
+                    <span class="stat-label">
+                        Average Level
+                    </span>
+
+                    <span class="stat-value">
+                        {{ formatNumber(statistics.averageLevel) }}
+                        <small>/ 4</small>
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- AVERAGE PERCENTAGE -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📈
+                </div>
+
+                <div class="stat-info">
+
+                    <span class="stat-label">
+                        Average Percentage
+                    </span>
+
+                    <span class="stat-value">
+                        {{ formatNumber(statistics.averagePercentage) }}%
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ===================================== -->
+        <!-- SECOND SECTION -->
+        <!-- ===================================== -->
+
+        <div class="statistics-grid">
+
+
+            <!-- ================================= -->
+            <!-- EMPLOYEES BY LEVEL -->
+            <!-- ================================= -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            Employees by Level
+                        </h2>
+
+                        <p>
+                            Distribution of employees according to their competency performance
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="level-list">
+
+
+                    <!-- LEVEL 0 -->
+
+                    <div class="level-row">
+
+                        <div class="level-label">
+
+                            <span class="level-badge level-0">
+                                0
+                            </span>
+
+                            <span>
+                                Insufficient
+                            </span>
+
+                        </div>
+
+                        <strong>
+                            {{ getEmployeeLevelCount(0) }}
+                        </strong>
+
+                    </div>
+
+
+                    <!-- LEVEL 1 -->
+
+                    <div class="level-row">
+
+                        <div class="level-label">
+
+                            <span class="level-badge level-1">
+                                1
+                            </span>
+
+                            <span>
+                                Partial
+                            </span>
+
+                        </div>
+
+                        <strong>
+                            {{ getEmployeeLevelCount(1) }}
+                        </strong>
+
+                    </div>
+
+
+                    <!-- LEVEL 2 -->
+
+                    <div class="level-row">
+
+                        <div class="level-label">
+
+                            <span class="level-badge level-2">
+                                2
+                            </span>
+
+                            <span>
+                                Acceptable
+                            </span>
+
+                        </div>
+
+                        <strong>
+                            {{ getEmployeeLevelCount(2) }}
+                        </strong>
+
+                    </div>
+
+
+                    <!-- LEVEL 3 -->
+
+                    <div class="level-row">
+
+                        <div class="level-label">
+
+                            <span class="level-badge level-3">
+                                3
+                            </span>
+
+                            <span>
+                                Good
+                            </span>
+
+                        </div>
+
+                        <strong>
+                            {{ getEmployeeLevelCount(3) }}
+                        </strong>
+
+                    </div>
+
+
+                    <!-- LEVEL 4 -->
+
+                    <div class="level-row">
+
+                        <div class="level-label">
+
+                            <span class="level-badge level-4">
+                                4
+                            </span>
+
+                            <span>
+                                Ideal
+                            </span>
+
+                        </div>
+
+                        <strong>
+                            {{ getEmployeeLevelCount(4) }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================================= -->
+            <!-- COMPETENCY STATUS -->
+            <!-- ================================= -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            Competency Status
+                        </h2>
+
+                        <p>
+                            Current evaluation status
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="status-list">
+
+
+                    <!-- PENDING -->
+
+                    <div class="status-row">
+
+                        <div class="status-label">
+
+                            <span class="status-dot pending">
+                            </span>
+
+                            <span>
+                                Pending
+                            </span>
+
+                        </div>
+
+                        <strong>
+                            {{ statistics.pendingCompetencies }}
+                        </strong>
+
+                    </div>
+
+
+                    <!-- VALIDATED -->
+
+                    <div class="status-row">
+
+                        <div class="status-label">
+
+                            <span class="status-dot validated">
+                            </span>
+
+                            <span>
+                                Validated
+                            </span>
+
+                        </div>
+
+                        <strong>
+                            {{ statistics.validatedCompetencies }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ===================================== -->
+        <!-- PERFORMANCE -->
+        <!-- ===================================== -->
+
+        <div class="panel performance-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Team Performance
+                    </h2>
+
+                    <p>
+                        Overall competency performance
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="performance-content">
+
+
+                <!-- LEVEL -->
+
+                <div class="performance-item">
+
+                    <div class="performance-title">
+
+                        <span>
+                            Average competency level
+                        </span>
+
+                        <strong>
+                            {{ formatNumber(statistics.averageLevel) }}/4
+                        </strong>
+
+                    </div>
+
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            [style.width.%]="
+                                (statistics.averageLevel / 4) * 100
+                            ">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PERCENTAGE -->
+
+                <div class="performance-item">
+
+                    <div class="performance-title">
+
+                        <span>
+                            Average competency percentage
+                        </span>
+
+                        <strong>
+                            {{ formatNumber(statistics.averagePercentage) }}%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            [style.width.%]="
+                                statistics.averagePercentage
+                            ">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>

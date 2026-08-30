@@ -1,0 +1,541 @@
+/* =========================================
+   PAGE
+========================================= */
+
+.validation-page {
+
+    padding: 30px;
+
+    background: #f5f7fb;
+
+    min-height: calc(100vh - 100px);
+
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.page-header {
+
+    margin-bottom: 30px;
+
+}
+
+.page-header h1 {
+
+    margin: 0;
+
+    color: #172033;
+
+    font-size: 34px;
+
+    font-weight: 700;
+
+}
+
+.page-header p {
+
+    margin-top: 8px;
+
+    color: #71809a;
+
+    font-size: 16px;
+
+}
+
+
+/* =========================================
+   MATRIX CONTAINER
+========================================= */
+
+.matrix-container {
+
+    background: white;
+
+    border-radius: 12px;
+
+    border: 1px solid #dce3ee;
+
+    overflow-x: auto;
+
+    box-shadow:
+        0 4px 15px rgba(30, 50, 80, 0.05);
+
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+.skill-matrix {
+
+    width: 100%;
+
+    min-width: 900px;
+
+    border-collapse: separate;
+
+    border-spacing: 0;
+
+}
+
+.percentage-tooltip {
+    position: relative;
+    cursor: pointer;
+}
+
+.tooltip-content {
+    display: none;
+
+    position: absolute;
+
+    bottom: calc(100% + 10px);
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    min-width: 260px;
+
+    padding: 12px;
+
+    background: #222;
+    color: white;
+
+    border-radius: 8px;
+
+    z-index: 1000;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+.percentage-tooltip:hover .tooltip-content {
+    display: block;
+}
+
+.tooltip-row {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+
+    padding: 8px 0;
+
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.tooltip-row:last-child {
+    border-bottom: none;
+}
+/* =========================================
+   TABLE HEADER
+========================================= */
+
+.skill-matrix thead th {
+
+    background: #eef3f8;
+
+    border-bottom: 2px solid #cbd6e4;
+
+    padding: 15px;
+
+    text-align: center;
+
+    color: #43536d;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================
+   FIRST COLUMN
+========================================= */
+
+.skill-column {
+
+    width: 260px;
+
+    min-width: 260px;
+
+    text-align: left !important;
+
+    padding-left: 25px !important;
+
+}
+
+
+/* =========================================
+   EMPLOYEE COLUMN
+========================================= */
+
+.employee-column {
+
+    min-width: 150px;
+
+}
+
+
+/* =========================================
+   EMPLOYEE HEADER
+========================================= */
+
+.employee-header {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 5px;
+
+}
+
+
+.initials {
+
+    width: 48px;
+
+    height: 48px;
+
+    border-radius: 10px;
+
+    border: 1px solid #b9d3ff;
+
+    background: #f3f7ff;
+
+    color: #2457d6;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: 700;
+
+    font-size: 16px;
+
+}
+
+
+.employee-name {
+
+    color: #172033;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+}
+
+
+.employee-position {
+
+    color: #71809a;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+
+    max-width: 140px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+.skill-matrix tbody td {
+
+    border-bottom: 1px solid #dce3ee;
+
+    border-right: 1px solid #dce3ee;
+
+}
+
+
+/* =========================================
+   SKILL NAME
+========================================= */
+
+.skill-name {
+
+    padding: 18px 25px;
+
+    background: #f8fafc;
+
+}
+
+
+.skill-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: #172033;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+}
+
+
+.skill-icon {
+
+    color: #2457d6;
+
+    font-size: 18px;
+
+}
+
+
+/* =========================================
+   SKILL CELL
+========================================= */
+
+.skill-cell {
+
+    text-align: center;
+
+    padding: 12px;
+
+}
+
+
+/* =========================================
+   LEVEL BOX
+========================================= */
+
+.level-box {
+
+    width: 72px;
+
+    height: 65px;
+
+    margin: auto;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: 700;
+
+}
+
+
+.level-number {
+
+    font-size: 22px;
+
+    line-height: 24px;
+
+}
+
+
+.level-percentage {
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================
+   LEVEL 0
+========================================= */
+
+.level-0 {
+
+    background: #f1f4f8;
+
+    color: #687b96;
+
+    border: 1px solid #dce4ee;
+
+}
+
+
+/* =========================================
+   LEVEL 1
+========================================= */
+
+.level-1 {
+
+    background: #fff1f1;
+
+    color: #e21d2f;
+
+    border: 1px solid #ffc6c6;
+
+}
+
+
+/* =========================================
+   LEVEL 2
+========================================= */
+
+.level-2 {
+
+    background: #fff8e8;
+
+    color: #c98a00;
+
+    border: 1px solid #ffdc80;
+
+}
+
+
+/* =========================================
+   LEVEL 3
+========================================= */
+
+.level-3 {
+
+    background: #eef6ff;
+
+    color: #2563eb;
+
+    border: 1px solid #b7d5ff;
+
+}
+
+
+/* =========================================
+   LEVEL 4
+========================================= */
+
+.level-4 {
+
+    background: #ecfff6;
+
+    color: #008b5a;
+
+    border: 1px solid #68e0b1;
+
+}
+
+
+/* =========================================
+   LEGEND
+========================================= */
+
+.legend {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    padding: 20px 10px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.legend-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color: #43536d;
+
+    font-size: 14px;
+
+}
+
+
+.legend-box {
+
+    width: 40px;
+
+    height: 36px;
+
+    border-radius: 8px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================
+   LOADING
+========================================= */
+
+.loading {
+
+    padding: 50px;
+
+    text-align: center;
+
+    color: #71809a;
+
+    font-size: 16px;
+
+}
+
+
+/* =========================================
+   ERROR
+========================================= */
+
+.error-message {
+
+    padding: 15px 20px;
+
+    margin-bottom: 20px;
+
+    background: #fff1f1;
+
+    border: 1px solid #ffc6c6;
+
+    border-radius: 8px;
+
+    color: #c62828;
+
+}
+
+
+/* =========================================
+   NO DATA
+========================================= */
+
+.no-data {
+
+    padding: 50px;
+
+    text-align: center;
+
+    color: #71809a;
+
+}

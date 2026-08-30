@@ -1,0 +1,22 @@
+h2{
+
+    color:#5b3cc4;
+
+    font-weight:600;
+
+}
+
+.table td,
+.table th{
+
+    vertical-align:middle;
+
+}
+
+.badge{
+
+    font-size:14px;
+
+    padding:8px 12px;
+
+}

@@ -49,4 +49,13 @@ export class UserService {
 
   }
 
+  getPostes() {
+
+  return this.http.get<string[]>(
+
+    this.api + '/postes'
+
+  );
+
+}
 }

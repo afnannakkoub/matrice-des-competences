@@ -19,9 +19,8 @@ public class Competence {
     @Column(nullable = false)
     private Boolean archive = false;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "categorie_id")
-    @JsonBackReference
     private Categorie categorie;
 
     public Competence() {

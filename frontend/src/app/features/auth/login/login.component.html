@@ -1,0 +1,96 @@
+<!-- login.component.html (inchangé, ton template Angular) -->
+<div class="login-page">
+
+  <div class="login-card">
+
+    <h1>
+      Welcome back
+    </h1>
+
+    <p>
+      Sign in to your account
+    </p>
+
+
+    <!-- ERROR -->
+
+    <div
+      *ngIf="error"
+      class="error-message">
+
+      {{ error }}
+
+    </div>
+
+
+    <!-- FORM -->
+
+    <form
+      (ngSubmit)="login()"
+      #loginForm="ngForm">
+
+
+      <!-- EMAIL -->
+
+      <div class="form-group">
+
+        <label for="email">
+          Email
+        </label>
+
+        <input
+          id="email"
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          required
+          autocomplete="email"
+          placeholder="Enter your email">
+
+      </div>
+
+
+      <!-- PASSWORD -->
+
+      <div class="form-group">
+
+        <label for="password">
+          Password
+        </label>
+
+        <input
+          id="password"
+          type="password"
+          name="motDePasse"
+          [(ngModel)]="motDePasse"
+          required
+          autocomplete="current-password"
+          placeholder="Enter your password">
+
+      </div>
+
+
+      <!-- LOGIN -->
+
+      <button
+        type="submit"
+        [disabled]="
+          loading ||
+          loginForm.invalid
+        ">
+
+        <span *ngIf="!loading">
+          Login
+        </span>
+
+        <span *ngIf="loading">
+          Logging in...
+        </span>
+
+      </button>
+
+    </form>
+
+  </div>
+
+</div>

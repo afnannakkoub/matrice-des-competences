@@ -1,0 +1,509 @@
+<div class="dashboard-page">
+
+    <!-- ==========================================
+         LOADING
+    =========================================== -->
+
+    <div
+        class="loading-container"
+        *ngIf="loading">
+
+        <div class="spinner"></div>
+
+        <p>
+            Loading your dashboard...
+        </p>
+
+    </div>
+
+
+    <!-- ==========================================
+         ERROR
+    =========================================== -->
+
+    <div
+        class="error-container"
+        *ngIf="!loading && error">
+
+        <div class="error-icon">
+            !
+        </div>
+
+        <h3>
+            Something went wrong
+        </h3>
+
+        <p>
+            {{ error }}
+        </p>
+
+    </div>
+
+
+    <!-- ==========================================
+         DASHBOARD
+    =========================================== -->
+
+    <div
+        class="dashboard-content"
+        *ngIf="!loading && dashboard && !error">
+
+
+        <!-- ======================================
+             WELCOME HEADER
+        ======================================= -->
+
+        <div class="welcome-section">
+
+            <div class="welcome-text">
+
+                <span class="welcome-label">
+                    MANAGER 
+                </span>
+
+                <h1>
+                    Welcome back,
+                    <span>
+                        {{ dashboard.managerName }}
+                    </span>
+                    
+                </h1>
+
+                <p>
+                    Here's an overview of your team's
+                    competency performance.
+                </p>
+
+            </div>
+
+
+            <div class="welcome-decoration">
+
+                <div class="decoration-circle circle-one"></div>
+
+                <div class="decoration-circle circle-two"></div>
+
+                <div class="decoration-icon">
+                    📊
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ======================================
+             KPI CARDS
+        ======================================= -->
+
+        <div class="stats-grid">
+
+
+            <!-- EMPLOYEES -->
+
+            <div class="stat-card employees-card">
+
+                <div class="stat-card-top">
+
+                    <div class="stat-icon">
+                        👥
+                    </div>
+
+                    <span class="stat-badge">
+                        TEAM
+                    </span>
+
+                </div>
+
+
+                <div class="stat-content">
+
+                    <span class="stat-label">
+                        Team Members
+                    </span>
+
+                    <strong class="stat-value">
+                        {{ dashboard.nbEmployes }}
+                    </strong>
+
+                    <span class="stat-description">
+                        Employees assigned to you
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- PENDING -->
+
+            <div class="stat-card pending-card">
+
+                <div class="stat-card-top">
+
+                    <div class="stat-icon">
+                        ⏳
+                    </div>
+
+                    <span class="stat-badge">
+                        ACTION
+                    </span>
+
+                </div>
+
+
+                <div class="stat-content">
+
+                    <span class="stat-label">
+                        Pending Evaluations
+                    </span>
+
+                    <strong class="stat-value">
+                        {{ dashboard.enAttente }}
+                    </strong>
+
+                    <span class="stat-description">
+                        Evaluations waiting for validation
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- VALIDATED -->
+
+            <div class="stat-card validated-card">
+
+                <div class="stat-card-top">
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+                    <span class="stat-badge">
+                        DONE
+                    </span>
+
+                </div>
+
+
+                <div class="stat-content">
+
+                    <span class="stat-label">
+                        Validated Competencies
+                    </span>
+
+                    <strong class="stat-value">
+                        {{ dashboard.validees }}
+                    </strong>
+
+                    <span class="stat-description">
+                        Competencies successfully validated
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ======================================
+             MIDDLE SECTION
+        ======================================= -->
+
+        <div class="dashboard-grid">
+
+
+            <!-- ==================================
+                 VALIDATION OVERVIEW
+            =================================== -->
+
+            <div class="dashboard-card overview-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="card-eyebrow">
+                            PERFORMANCE
+                        </span>
+
+                        <h2>
+                            Validation Overview
+                        </h2>
+
+                    </div>
+
+                    <div class="card-header-icon">
+                        📈
+                    </div>
+
+                </div>
+
+
+                <div class="validation-content">
+
+                    <div class="validation-number">
+
+                        <strong>
+                            {{ dashboard.validees }}
+                        </strong>
+
+                        <span>
+                            validated
+                        </span>
+
+                    </div>
+
+
+                    <div class="validation-details">
+
+                        <div class="validation-row">
+
+                            <span>
+                                Pending
+                            </span>
+
+                            <strong>
+                                {{ dashboard.enAttente }}
+                            </strong>
+
+                        </div>
+
+
+                        <div class="validation-row">
+
+                            <span>
+                                Validated
+                            </span>
+
+                            <strong>
+                                {{ dashboard.validees }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Progress -->
+
+                <div class="progress-section">
+
+                    <div class="progress-label">
+
+                        <span>
+                            Validation progress
+                        </span>
+
+                        <strong>
+                            {{
+                                (
+                                    dashboard.validees /
+                                    (
+                                        dashboard.validees +
+                                        dashboard.enAttente
+                                    ) * 100
+                                ) || 0
+                                | number:'1.0-0'
+                            }}%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            [style.width.%]="
+                                (
+                                    dashboard.validees /
+                                    (
+                                        dashboard.validees +
+                                        dashboard.enAttente
+                                    ) * 100
+                                ) || 0
+                            ">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================
+                 QUICK ACTIONS
+            =================================== -->
+
+            <div class="dashboard-card actions-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="card-eyebrow">
+                            MANAGEMENT
+                        </span>
+
+                        <h2>
+                            Quick Actions
+                        </h2>
+
+                    </div>
+
+                    <div class="card-header-icon">
+                        ⚡
+                    </div>
+
+                </div>
+
+
+                <div class="actions-list">
+
+
+                    <!-- TEAM -->
+
+                    <button
+                        class="action-item"
+                        type="button"
+                        (click)="router.navigate(['/manager/team'])">
+
+                        <div class="action-icon">
+                            👥
+                        </div>
+
+                        <div class="action-text">
+
+                            <strong>
+                                My Team
+                            </strong>
+
+                            <span>
+                                View your employees
+                            </span>
+
+                        </div>
+
+                        <span class="action-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <!-- VALIDATIONS -->
+
+                    <button
+                        class="action-item"
+                        type="button"
+                        (click)="router.navigate(['/manager/validations'])">
+
+                        <div class="action-icon">
+                            ✓
+                        </div>
+
+                        <div class="action-text">
+
+                            <strong>
+                                Validations
+                            </strong>
+
+                            <span>
+                                Review competency evaluations
+                            </span>
+
+                        </div>
+
+                        <span class="action-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <!-- MATRIX -->
+
+                    <button
+                        class="action-item"
+                        type="button"
+                        (click)="router.navigate(['/manager/matrix'])">
+
+                        <div class="action-icon">
+                            📊
+                        </div>
+
+                        <div class="action-text">
+
+                            <strong>
+                                Skill Matrix
+                            </strong>
+
+                            <span>
+                                Explore team performance
+                            </span>
+
+                        </div>
+
+                        <span class="action-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ======================================
+             BOTTOM INFORMATION
+        ======================================= -->
+
+        <div class="bottom-banner">
+
+            <div class="banner-icon">
+                💡
+            </div>
+
+            <div class="banner-content">
+
+                <strong>
+                    Keep your team's competencies up to date
+                </strong>
+
+                <p>
+                    Review pending evaluations regularly to
+                    maintain an accurate competency matrix.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="banner-button"
+                (click)="router.navigate(['/manager/validations'])">
+
+                Review Evaluations
+
+                <span>
+                    →
+                </span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

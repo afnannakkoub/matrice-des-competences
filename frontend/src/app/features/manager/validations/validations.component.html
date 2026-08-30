@@ -1,0 +1,295 @@
+<div class="validation-page">
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>Team Skill Matrix</h1>
+
+            <p>
+                Visualize employee competency levels by position
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ERROR -->
+
+    <div
+        *ngIf="error"
+        class="error-message">
+
+        {{ error }}
+
+    </div>
+
+
+    <!-- LOADING -->
+
+    <div
+        *ngIf="loading"
+        class="loading">
+
+        Loading team competencies...
+
+    </div>
+
+
+    <!-- MATRIX -->
+
+    <div
+        *ngIf="!loading && posts.length > 0"
+        class="matrix-container">
+
+        <table class="skill-matrix">
+
+            <thead>
+
+                <tr>
+
+                    <th class="skill-column">
+
+                        POSTE / COLLABORATEUR
+
+                    </th>
+
+
+                    <th
+                        *ngFor="let employee of employees"
+                        class="employee-column">
+
+                        <div class="employee-header">
+
+                            <div class="initials">
+
+                                {{ getInitials(employee) }}
+
+                            </div>
+
+                            <div class="employee-name">
+
+                                {{ employee.prenom }}
+
+                            </div>
+
+                            <div class="employee-position">
+
+                                {{ employee.poste }}
+
+                            </div>
+
+                        </div>
+
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                <tr
+                    *ngFor="let post of posts">
+
+                    <!-- POST -->
+
+                    <td class="skill-name">
+
+                        <div class="skill-title">
+
+                            <span class="skill-icon">
+                                💼
+                            </span>
+
+                            {{ post.poste }}
+
+                        </div>
+
+                    </td>
+
+
+                    <!-- EMPLOYEE -->
+
+                    <td
+                        *ngFor="let employee of employees"
+                        class="skill-cell">
+
+                        <div
+                            class="level-box"
+                            [ngClass]="
+                                getLevelClass(
+                                    getLevel(
+                                        post,
+                                        employee
+                                    )
+                                )
+                            ">
+
+                            <div class="level-number">
+
+                                {{
+                                    getLevel(
+                                        post,
+                                        employee
+                                    )
+                                }}
+
+                            </div>
+
+                            <div
+    class="level-percentage percentage-tooltip">
+
+    {{
+        getPercentage(
+            post,
+            employee
+        )
+    }}%
+
+    <div class="tooltip-content">
+
+        <div class="tooltip-title">
+            Competencies considered
+        </div>
+
+        <div
+            *ngFor="
+                let detail of getDetails(
+                    post,
+                    employee
+                )
+            "
+            class="tooltip-competency">
+
+            <div class="tooltip-competency-name">
+                {{ detail.competence }}
+            </div>
+
+            <div class="tooltip-level">
+
+                Required:
+                <strong>
+                    {{ detail.niveauRequis }}
+                </strong>
+
+                |
+
+                Considered:
+                <strong>
+                    {{ detail.niveauPrisEnCompte }}
+                </strong>
+
+            </div>
+
+            <div class="tooltip-status">
+
+                {{ detail.statut }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- NO DATA -->
+
+    <div
+        *ngIf="!loading && posts.length === 0"
+        class="no-data">
+
+        No positions found.
+
+    </div>
+
+
+    <!-- LEGEND -->
+
+    <div
+        *ngIf="!loading && posts.length > 0"
+        class="legend">
+
+        <div class="legend-item">
+
+            <span class="legend-box level-0">
+                0
+            </span>
+
+            <span>
+                Insufficient
+            </span>
+
+        </div>
+
+
+        <div class="legend-item">
+
+            <span class="legend-box level-1">
+                1
+            </span>
+
+            <span>
+                Partial
+            </span>
+
+        </div>
+
+
+        <div class="legend-item">
+
+            <span class="legend-box level-2">
+                2
+            </span>
+
+            <span>
+                Acceptable
+            </span>
+
+        </div>
+
+
+        <div class="legend-item">
+
+            <span class="legend-box level-3">
+                3
+            </span>
+
+            <span>
+                Good
+            </span>
+
+        </div>
+
+
+        <div class="legend-item">
+
+            <span class="legend-box level-4">
+                4
+            </span>
+
+            <span>
+                Ideal
+            </span>
+
+        </div>
+
+    </div>
+
+</div>

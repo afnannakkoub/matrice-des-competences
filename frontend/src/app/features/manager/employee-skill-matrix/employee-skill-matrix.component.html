@@ -1,0 +1,238 @@
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2>Employee Skill Matrix</h2>
+
+            <p class="text-muted">
+                Competency levels of the employee
+            </p>
+        </div>
+
+        <button
+            class="btn btn-primary"
+            (click)="openAddSkill()">
+
+            + Associate Skill
+
+        </button>
+
+    </div>
+
+
+    <!-- SUCCESS -->
+
+    <div
+        *ngIf="success"
+        class="alert alert-success">
+
+        {{ success }}
+
+    </div>
+
+
+    <!-- ERROR -->
+
+    <div
+        *ngIf="error"
+        class="alert alert-danger">
+
+        {{ error }}
+
+    </div>
+
+
+    <!-- ADD SKILL FORM -->
+
+    <div
+        *ngIf="showAddSkill"
+        class="card mb-4">
+
+        <div class="card-header">
+
+            <h5 class="mb-0">
+                Associate a new skill
+            </h5>
+
+        </div>
+
+
+        <div class="card-body">
+
+            <div class="row">
+
+
+                <!-- COMPETENCE -->
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        Competence
+                    </label>
+
+                    <select
+                        class="form-select"
+                        [(ngModel)]="selectedCompetenceId">
+
+                        <option
+                            [ngValue]="null">
+
+                            Select a competence
+
+                        </option>
+
+                        <option
+                            *ngFor="let competence of competences"
+                            [ngValue]="competence.id">
+
+                            {{ competence.nom }}
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- LEVEL -->
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        Employee Level
+                    </label>
+
+                    <select
+                        class="form-select"
+                        [(ngModel)]="selectedLevel">
+
+                        <option
+                            [ngValue]="null">
+
+                            Select level
+
+                        </option>
+
+                        <option [ngValue]="0">
+                            0 - Beginner
+                        </option>
+
+                        <option [ngValue]="1">
+                            1 - Basic
+                        </option>
+
+                        <option [ngValue]="2">
+                            2 - Intermediate
+                        </option>
+
+                        <option [ngValue]="3">
+                            3 - Advanced
+                        </option>
+
+                        <option [ngValue]="4">
+                            4 - Expert
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="mt-4">
+
+                <button
+                    class="btn btn-success me-2"
+                    [disabled]="saving"
+                    (click)="addSkill()">
+
+                    {{ saving ? 'Saving...' : 'Associate Skill' }}
+
+                </button>
+
+
+                <button
+                    class="btn btn-outline-secondary"
+                    (click)="cancelAddSkill()">
+
+                    Cancel
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+     <div *ngIf="matrix.length === 0">
+    No competencies found.
+  </div>
+
+  <table
+    *ngIf="matrix.length > 0"
+    class="table table-bordered table-hover">
+
+    <thead class="table-light">
+
+      <tr>
+        <th>Skill</th>
+        <th>Required</th>
+        <th>Evaluation</th>
+        <th>Status</th>
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let item of matrix">
+
+        <td>
+          {{ item.competence }}
+        </td>
+
+        <td>
+          {{ item.niveauRequis }}
+        </td>
+
+      
+
+        <td>
+          {{ item.niveauEvaluation ?? '-' }}
+        </td>
+
+        <td>
+
+          <span
+            *ngIf="item.statut === 'VALIDE'"
+            class="badge bg-success">
+            Validated
+          </span>
+
+          <span
+            *ngIf="item.statut === 'EN_ATTENTE'"
+            class="badge bg-warning text-dark">
+            Pending
+          </span>
+
+          <span
+            *ngIf="item.statut === 'NON_EVALUE'"
+            class="badge bg-secondary">
+            Not evaluated
+          </span>
+
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>

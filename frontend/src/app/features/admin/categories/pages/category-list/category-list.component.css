@@ -1,0 +1,18 @@
+.table td,
+.table th{
+    vertical-align: middle;
+}
+
+.btn-primary{
+    background:#5b3cc4;
+    border:none;
+}
+
+.btn-primary:hover{
+    background:#472fa3;
+}
+
+h2{
+    color:#5b3cc4;
+    font-weight:600;
+}

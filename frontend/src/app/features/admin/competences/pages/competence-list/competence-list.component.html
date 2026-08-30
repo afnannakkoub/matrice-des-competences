@@ -1,0 +1,137 @@
+<div class="container-fluid">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2>Competences</h2>
+
+        <a
+            routerLink="/admin/competences/add"
+            class="btn btn-primary">
+
+            + Add Competence
+
+        </a>
+
+    </div>
+
+    <div class="row mb-4">
+
+        <div class="col-md-5">
+
+            <input
+                class="form-control"
+                placeholder="Search..."
+                [(ngModel)]="search"
+                (input)="filterCompetences()">
+
+        </div>
+
+        <div class="col-md-3">
+
+            <select
+                class="form-select"
+                [(ngModel)]="selectedCategory"
+                (change)="filterCompetences()">
+
+                <option value="ALL">
+
+                    All Categories
+
+                </option>
+
+                <option
+                    *ngFor="let category of categories"
+                    [value]="category.nom">
+
+                    {{ category.nom }}
+
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+    <table class="table table-hover align-middle">
+
+        <thead class="table-light">
+
+        <tr>
+
+            <th>Name</th>
+
+            <th>Description</th>
+
+            <th>Category</th>
+
+            <th>Status</th>
+
+            <th width="180">Actions</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        <tr *ngFor="let competence of filteredCompetences">
+
+            <td>
+
+                {{ competence.nom }}
+
+            </td>
+
+            <td>
+
+                {{ competence.description }}
+
+            </td>
+
+            <td>
+
+                {{ competence.categorie.nom }}
+
+            </td>
+
+            <td>
+
+                <span
+                    class="badge"
+                    [class.bg-success]="!competence.archive"
+                    [class.bg-secondary]="competence.archive">
+
+                    {{ competence.archive ? 'Archived' : 'Active' }}
+
+                </span>
+
+            </td>
+
+            <td>
+
+                <a
+                    class="btn btn-sm btn-outline-primary me-2"
+                    [routerLink]="['/admin/competences/edit', competence.id]">
+
+                    Edit
+
+                </a>
+
+                <button
+                    class="btn btn-sm btn-outline-danger"
+                    (click)="deleteCompetence(competence.id!)">
+
+                    Delete
+
+                </button>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>

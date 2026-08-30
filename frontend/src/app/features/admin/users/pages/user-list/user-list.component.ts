@@ -17,7 +17,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './user-list.component.css'
 })
 export class UserListComponent implements OnInit {
-  selectedDepartment = '';
+  selectedDepartment = 'ALL';
   departments: string[] = [];
 
 

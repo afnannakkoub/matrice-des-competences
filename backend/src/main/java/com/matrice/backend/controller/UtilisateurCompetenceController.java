@@ -1,5 +1,7 @@
 package com.matrice.backend.controller;
 
+import com.matrice.backend.DTO.ManagerEvaluateRequest;
+import com.matrice.backend.DTO.ManagerEvaluationDTO;
 import com.matrice.backend.entity.UtilisateurCompetence;
 import com.matrice.backend.service.UtilisateurCompetenceService;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +14,8 @@ public class UtilisateurCompetenceController {
 
     private final UtilisateurCompetenceService service;
 
-    public UtilisateurCompetenceController(UtilisateurCompetenceService service) {
+    public UtilisateurCompetenceController(
+            UtilisateurCompetenceService service) {
         this.service = service;
     }
 
@@ -30,7 +33,9 @@ public class UtilisateurCompetenceController {
     // ============================================
 
     @GetMapping("/{id}")
-    public UtilisateurCompetence getById(@PathVariable Long id) {
+    public UtilisateurCompetence getById(
+            @PathVariable Long id) {
+
         return service.getById(id);
     }
 
@@ -87,7 +92,6 @@ public class UtilisateurCompetenceController {
 
     @GetMapping("/en-attente")
     public List<UtilisateurCompetence> getPending() {
-
         return service.getPending();
     }
 
@@ -110,14 +114,45 @@ public class UtilisateurCompetenceController {
 
     @PutMapping("/{id}/valider")
     public UtilisateurCompetence validateSkill(
-
             @PathVariable Long id,
-
             @RequestParam Integer niveau,
-
             @RequestParam Long managerId) {
 
-        return service.validate(id, niveau, managerId);
+        return service.validate(
+                id,
+                niveau,
+                managerId
+        );
     }
 
+    // ============================================
+    // MANAGER
+    // Get employee evaluation matrix
+    // ============================================
+
+    @GetMapping("/manager/evaluate/{utilisateurId}")
+    public List<ManagerEvaluationDTO> getManagerEvaluations(
+            @PathVariable Long utilisateurId) {
+
+        return service.getManagerEvaluations(
+                utilisateurId
+        );
+    }
+
+    // ============================================
+    // MANAGER
+    // Directly evaluate employee competency
+    // ============================================
+
+    @PostMapping("/manager/evaluate")
+    public UtilisateurCompetence managerEvaluate(
+            @RequestBody ManagerEvaluateRequest request) {
+
+        return service.managerEvaluate(
+                request.getUtilisateurId(),
+                request.getCompetenceId(),
+                request.getNiveau(),
+                request.getManagerId()
+        );
+    }
 }

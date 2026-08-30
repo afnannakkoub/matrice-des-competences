@@ -37,14 +37,14 @@ public class UtilisateurCompetence {
     private Competence competence;
 
     // ==========================
-    // Employee proposed level (0 -> 4)
+    // Employee proposed level
+    // Database column: niveauEmploye
     // ==========================
-
-    @Column(name = "niveau_propose", nullable = false)
-    private Integer niveauPropose;
+    @Column(name = "niveau_employe", nullable = false)
+    private Integer niveauEmploye;
 
     // ==========================
-    // Manager validated level (0 -> 4)
+    // Manager validated level
     // ==========================
 
     @Column(name = "niveau_valide")
@@ -85,19 +85,21 @@ public class UtilisateurCompetence {
         this.statut = StatutEvaluation.EN_ATTENTE;
     }
 
-    public UtilisateurCompetence(Long id,
-                                 Utilisateur utilisateur,
-                                 Competence competence,
-                                 Integer niveauPropose,
-                                 Integer niveauValide,
-                                 StatutEvaluation statut,
-                                 LocalDateTime dateCreation,
-                                 LocalDateTime dateValidation,
-                                 Utilisateur manager) {
+    public UtilisateurCompetence(
+            Long id,
+            Utilisateur utilisateur,
+            Competence competence,
+            Integer niveauEmploye,
+            Integer niveauValide,
+            StatutEvaluation statut,
+            LocalDateTime dateCreation,
+            LocalDateTime dateValidation,
+            Utilisateur manager) {
+
         this.id = id;
         this.utilisateur = utilisateur;
         this.competence = competence;
-        this.niveauPropose = niveauPropose;
+        this.niveauEmploye = niveauEmploye;
         this.niveauValide = niveauValide;
         this.statut = statut;
         this.dateCreation = dateCreation;
@@ -133,12 +135,12 @@ public class UtilisateurCompetence {
         this.competence = competence;
     }
 
-    public Integer getNiveauPropose() {
-        return niveauPropose;
+    public Integer getNiveauEmploye() {
+        return niveauEmploye;
     }
 
-    public void setNiveauPropose(Integer niveauPropose) {
-        this.niveauPropose = niveauPropose;
+    public void setNiveauEmploye(Integer niveauEmploye) {
+        this.niveauEmploye = niveauEmploye;
     }
 
     public Integer getNiveauValide() {

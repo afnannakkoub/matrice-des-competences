@@ -1,0 +1,102 @@
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2>My Team</h2>
+
+    </div>
+
+    <table class="table table-hover align-middle">
+
+        <thead class="table-light">
+
+        <tr>
+
+            <th>Employee</th>
+
+            <th>Position</th>
+
+            <th>Department</th>
+
+            <th>Status</th>
+
+            <th width="250">Actions</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        <tr *ngFor="let employee of employees">
+
+            <td>
+
+                <strong>
+
+                    {{ employee.nom }} {{ employee.prenom }}
+
+                </strong>
+
+                <br>
+
+                <small class="text-muted">
+
+                    {{ employee.email }}
+
+                </small>
+
+            </td>
+
+            <td>
+
+                {{ employee.poste }}
+
+            </td>
+
+            <td>
+
+                {{ employee.departement }}
+
+            </td>
+
+            <td>
+
+                <span
+                    class="badge"
+                    [class.bg-success]="employee.actif"
+                    [class.bg-danger]="!employee.actif">
+
+                    {{ employee.actif ? 'Active' : 'Inactive' }}
+
+                </span>
+
+            </td>
+
+            <td>
+
+                <button
+                    class="btn btn-primary btn-sm me-2"
+                    (click)="openMatrix(employee.id!)">
+
+                    Skill Matrix
+
+                </button>
+
+                <button
+                    class="btn btn-success btn-sm"
+                    (click)="evaluate(employee.id!)">
+
+                    Evaluate
+
+                </button>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>

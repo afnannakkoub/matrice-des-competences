@@ -1,0 +1,22 @@
+.btn-primary{
+
+    background:#5b3cc4;
+
+    border:none;
+
+}
+
+.btn-primary:hover{
+
+    background:#472fa3;
+
+}
+
+.form-control:focus,
+.form-select:focus{
+
+    border-color:#5b3cc4;
+
+    box-shadow:0 0 0 .2rem rgba(91,60,196,.25);
+
+}

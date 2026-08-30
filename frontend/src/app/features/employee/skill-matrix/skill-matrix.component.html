@@ -1,0 +1,429 @@
+<div class="skill-matrix-page">
+
+  <!-- ===================================== -->
+  <!-- HEADER -->
+  <!-- ===================================== -->
+
+  <div class="page-header">
+
+    <div>
+      <h1>My Skill Matrix</h1>
+
+      <p>
+        View and manage your competencies
+      </p>
+    </div>
+
+
+    <button
+      class="btn-add"
+      (click)="openAddForm()"
+      *ngIf="!showAddForm"
+    >
+      <i class="bi bi-plus-circle"></i>
+      Add Competence
+    </button>
+
+  </div>
+
+
+  <!-- ===================================== -->
+  <!-- ADD COMPETENCE FORM -->
+  <!-- ===================================== -->
+
+  <div
+    class="add-form"
+    *ngIf="showAddForm"
+  >
+
+    <div class="form-header">
+
+      <div>
+        <h2>Add a Competence</h2>
+
+        <p>
+          Declare a new competence and evaluate your level.
+        </p>
+      </div>
+
+    </div>
+
+
+    <!-- COMPETENCE -->
+
+    <div class="form-group">
+
+      <label>
+        Competence
+      </label>
+
+      <select
+        [(ngModel)]="selectedCompetenceId"
+      >
+
+        <option
+          [ngValue]="null"
+        >
+          -- Select a competence --
+        </option>
+
+        <option
+          *ngFor="let competence of availableCompetences"
+          [ngValue]="competence.id"
+        >
+          {{ competence.nom }}
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <!-- LEVEL -->
+
+    <div class="form-group">
+
+      <label>
+        Your Level
+      </label>
+
+      <select
+        [(ngModel)]="selfLevel"
+      >
+
+        <option
+          [ngValue]="null"
+        >
+          -- Select your level --
+        </option>
+
+        <option [ngValue]="0">
+          0 - Beginner
+        </option>
+
+        <option [ngValue]="1">
+          1 - Basic
+        </option>
+
+        <option [ngValue]="2">
+          2 - Intermediate
+        </option>
+
+        <option [ngValue]="3">
+          3 - Advanced
+        </option>
+
+        <option [ngValue]="4">
+          4 - Expert
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <!-- BUTTONS -->
+
+    <div class="form-actions">
+
+      <button
+        class="btn-cancel"
+        type="button"
+        (click)="cancelAdd()"
+      >
+        Cancel
+      </button>
+
+      <button
+        class="btn-submit"
+        type="button"
+        (click)="addCompetence()"
+      >
+        <i class="bi bi-check-circle"></i>
+        Add Competence
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================== -->
+  <!-- ERROR -->
+  <!-- ===================================== -->
+
+  <div
+    class="error-message"
+    *ngIf="error"
+  >
+
+    {{ error }}
+
+  </div>
+
+
+  <!-- ===================================== -->
+  <!-- LOADING -->
+  <!-- ===================================== -->
+
+  <div
+    class="loading"
+    *ngIf="loading"
+  >
+
+    Loading your skill matrix...
+
+  </div>
+
+
+  <!-- ===================================== -->
+  <!-- MATRIX -->
+  <!-- ===================================== -->
+
+  <div
+    class="matrix-card"
+    *ngIf="!loading && !error"
+  >
+
+    <div class="matrix-header">
+
+      <h2>My Competencies</h2>
+
+      <span>
+        {{ matrix.length }} competencies
+      </span>
+
+    </div>
+
+
+    <div class="table-container">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>
+              Competence
+            </th>
+
+            <th>
+              Required Level
+            </th>
+
+            <th>
+              My Level
+            </th>
+
+            <th>
+              Manager Level
+            </th>
+
+            <th>
+              Gap
+            </th>
+
+            <th>
+              Status
+            </th>
+
+            <th>
+              Action
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          <tr
+            *ngFor="let skill of matrix"
+          >
+
+            <!-- COMPETENCE -->
+
+            <td>
+
+              <strong>
+                {{ skill.competence }}
+              </strong>
+
+            </td>
+
+
+            <!-- REQUIRED -->
+
+            <td>
+
+              <span class="level-badge">
+
+                {{ skill.niveauRequis }}
+
+              </span>
+
+              <small>
+
+                {{ getLevelLabel(skill.niveauRequis) }}
+
+              </small>
+
+            </td>
+
+
+            <!-- MY LEVEL -->
+
+            <td>
+
+              <select
+                class="level-select"
+                [(ngModel)]="skill.niveauActuel"
+              >
+
+                <option
+                  [ngValue]="0"
+                >
+                  0 - Beginner
+                </option>
+
+                <option
+                  [ngValue]="1"
+                >
+                  1 - Basic
+                </option>
+
+                <option
+                  [ngValue]="2"
+                >
+                  2 - Intermediate
+                </option>
+
+                <option
+                  [ngValue]="3"
+                >
+                  3 - Advanced
+                </option>
+
+                <option
+                  [ngValue]="4"
+                >
+                  4 - Expert
+                </option>
+
+              </select>
+
+            </td>
+
+
+            <!-- MANAGER LEVEL -->
+
+            <td>
+
+              <span
+                *ngIf="skill.niveauEvaluation !== null"
+                class="level-badge manager"
+              >
+
+                {{ skill.niveauEvaluation }}
+
+              </span>
+
+              <span
+                *ngIf="skill.niveauEvaluation === null"
+                class="not-evaluated"
+              >
+
+                Not evaluated
+
+              </span>
+
+            </td>
+
+
+            <!-- GAP -->
+
+            <td>
+
+              <span
+                class="gap-badge"
+                [ngClass]="getGapClass(skill.gap)"
+              >
+
+                {{ getGapLabel(skill.gap) }}
+
+              </span>
+
+            </td>
+
+
+            <!-- STATUS -->
+
+            <td>
+
+              <span
+                class="status-badge"
+                [ngClass]="getStatusClass(skill.statut)"
+              >
+
+                {{ skill.statut }}
+
+              </span>
+
+            </td>
+
+
+            <!-- ACTION -->
+
+            <td>
+
+              <button
+                class="btn-update"
+                *ngIf="skill.evaluationId"
+                (click)="updateSelfEvaluation(skill)"
+              >
+
+                <i class="bi bi-pencil"></i>
+
+                Update
+
+              </button>
+
+            </td>
+
+          </tr>
+
+
+          <!-- EMPTY -->
+
+          <tr
+            *ngIf="matrix.length === 0"
+          >
+
+            <td
+              colspan="7"
+              class="empty"
+            >
+
+              No competencies found.
+
+              <button
+                (click)="openAddForm()"
+              >
+                Add your first competence
+              </button>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>

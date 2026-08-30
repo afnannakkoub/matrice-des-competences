@@ -1,5 +1,6 @@
 package com.matrice.backend.repository;
 
+import com.matrice.backend.entity.PosteCompetence;
 import com.matrice.backend.entity.StatutEvaluation;
 import com.matrice.backend.entity.UtilisateurCompetence;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -73,4 +74,9 @@ public interface UtilisateurCompetenceRepository
 
     long countByCompetenceId(Long competenceId);
 
+    public interface PosteCompetenceRepository
+            extends JpaRepository<PosteCompetence, Long> {
+
+        List<PosteCompetence> findByPoste(String poste);
+    }
 }

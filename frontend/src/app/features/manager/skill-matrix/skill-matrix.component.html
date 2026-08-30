@@ -1,0 +1,305 @@
+<div class="skill-matrix-page">
+
+    <!-- ========================================= -->
+    <!-- PAGE HEADER -->
+    <!-- ========================================= -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                Team Skill Matrix
+            </h1>
+
+            <p>
+                View and analyze employee competencies
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- EMPLOYEE SELECTOR -->
+    <!-- ========================================= -->
+
+   
+
+<div class="employee-selector-card">
+
+    <div class="selector-header">
+
+        <h3>
+            Employee
+        </h3>
+
+        <span>
+            Select an employee
+        </span>
+
+    </div>
+
+
+    <div class="employee-select-container">
+
+        <select
+            class="employee-select"
+            [value]="selectedEmployee?.utilisateurId ?? ''"
+            (change)="onEmployeeChange($event)"
+        >
+
+            <option value="" disabled>
+                Select an employee
+            </option>
+
+            <option
+                *ngFor="let employee of matrix"
+                [value]="employee.utilisateurId"
+            >
+
+                {{ employee.prenom }} {{ employee.nom }}
+
+            </option>
+
+        </select>
+
+    </div>
+
+</div>
+
+    <!-- ========================================= -->
+    <!-- SELECTED EMPLOYEE -->
+    <!-- ========================================= -->
+
+    <div
+        *ngIf="selectedEmployee"
+        class="employee-banner"
+    >
+
+        <div class="banner-avatar">
+
+            {{ selectedEmployee.prenom.charAt(0) }}
+            {{ selectedEmployee.nom.charAt(0) }}
+
+        </div>
+
+
+        <div class="banner-info">
+
+            <h2>
+
+                {{ selectedEmployee.prenom }}
+                {{ selectedEmployee.nom }}
+
+            </h2>
+
+            <p>
+
+                {{ selectedEmployee.poste || 'EMPLOYEE' }}
+
+                <span>
+                    |
+                </span>
+
+                {{ selectedEmployee.departement || 'TEAM' }}
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- INDIVIDUAL ACTION PLAN -->
+    <!-- ========================================= -->
+
+    <div
+        *ngIf="selectedEmployee"
+        class="action-plan-card"
+    >
+
+        <div class="action-plan-header">
+
+            <div>
+
+                <h2>
+                    Individual Action Plan
+                </h2>
+
+                <p>
+
+                    Current position:
+                    <strong>
+                        {{ selectedEmployee.poste || 'Employee' }}
+                    </strong>
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ===================================== -->
+        <!-- TABLE -->
+        <!-- ===================================== -->
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Skill
+                        </th>
+
+                        <th>
+                            Required
+                        </th>
+
+                        <th>
+                            Current
+                        </th>
+
+                        <th>
+                            Gap
+                        </th>
+
+                       
+
+                    </tr>
+
+                </thead>
+                <tbody>
+
+    <tr
+        *ngFor="let item of employeeMatrix"
+    >
+
+        <!-- SKILL -->
+        <td class="skill-name">
+
+            {{ item.competence }}
+
+        </td>
+
+
+        <!-- REQUIRED -->
+        <td>
+
+            <span class="score required">
+
+                {{ item.niveauRequis }}
+
+            </span>
+
+        </td>
+
+
+        <!-- CURRENT -->
+        <td>
+
+            <span
+                class="score"
+                [ngClass]="{
+
+                    'level-0':
+                        item.niveauActuel === 0,
+
+                    'level-1':
+                        item.niveauActuel === 1,
+
+                    'level-2':
+                        item.niveauActuel === 2,
+
+                    'level-3':
+                        item.niveauActuel === 3,
+
+                    'level-4':
+                        item.niveauActuel === 4
+
+                }"
+            >
+
+                {{ item.niveauEvaluation ?? '—' }}
+
+            </span>
+
+        </td>
+
+
+        <!-- GAP -->
+        <td>
+
+            <span
+                *ngIf="
+                    item.niveauEvaluation !== null &&
+                    item.niveauEvaluation !== undefined
+                "
+            >
+
+                {{
+                    item.niveauEvaluation -
+                    item.niveauRequis
+                }}
+
+            </span>
+
+            <span
+                *ngIf="
+                    item.niveauEvaluation === null ||
+                    item.niveauEvaluation === undefined
+                "
+            >
+
+                —
+
+            </span>
+
+        </td>
+
+
+
+
+        
+
+    </tr>
+
+
+    <!-- EMPTY STATE -->
+
+    <tr
+        *ngIf="
+            selectedEmployee &&
+            employeeMatrix.length === 0
+        "
+    >
+
+        <td
+            colspan="6"
+            style="text-align: center; padding: 30px;"
+        >
+
+            No competency data available
+            for this employee.
+
+        </td>
+
+    </tr>
+
+</tbody>
+
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

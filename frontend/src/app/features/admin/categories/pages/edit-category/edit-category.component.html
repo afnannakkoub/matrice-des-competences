@@ -1,0 +1,25 @@
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header">
+
+            <h3>Edit Category</h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <app-category-form
+
+                [category]="category"
+
+                (saveCategory)="update($event)">
+
+            </app-category-form>
+
+        </div>
+
+    </div>
+
+</div>

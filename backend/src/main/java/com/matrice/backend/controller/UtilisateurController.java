@@ -1,11 +1,12 @@
 package com.matrice.backend.controller;
 
+import com.matrice.backend.DTO.EmployeeSkillMatrixDTO;
 import com.matrice.backend.DTO.SkillMatrixRowDTO;
 import com.matrice.backend.entity.Utilisateur;
 import com.matrice.backend.service.UtilisateurService;
 import org.springframework.web.bind.annotation.*;
 import com.matrice.backend.DTO.ManagerDashboardDTO;
-
+import com.matrice.backend.DTO.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +29,13 @@ public class UtilisateurController {
         return service.getAllUtilisateurs();
     }
 
+    @PostMapping("/login")
+    public LoginResponse login(
+            @RequestBody LoginRequest request) {
+
+        return service.login(request);
+    }
+
     // ==========================
     // GET BY ID
     // ==========================
@@ -35,6 +43,7 @@ public class UtilisateurController {
     public Optional<Utilisateur> getById(@PathVariable Long id) {
         return service.getUtilisateurById(id);
     }
+
 
     // ==========================
     // CREATE
@@ -87,7 +96,50 @@ public class UtilisateurController {
     public List<SkillMatrixRowDTO> getSkillMatrix(
             @PathVariable Long managerId) {
 
-        return service.getSkillMatrix(managerId);
+        return service.getTeamSkillMatrix(managerId);
+    }
+
+    @GetMapping("/postes")
+    public List<String> getPostes() {
+
+        return service.getPostes();
 
     }
+    // =========================================
+// EMPLOYEE SKILL MATRIX
+// =========================================
+
+    @GetMapping("/{utilisateurId}/skill-matrix")
+    public List<EmployeeSkillMatrixDTO> getEmployeeSkillMatrix(
+            @PathVariable Long utilisateurId) {
+
+        return service.getEmployeeSkillMatrix(utilisateurId);
+
+    }
+
+    @GetMapping("/manager/{managerId}/validation-matrix")
+    public List<PosteSkillMatrixRowDTO> getValidationMatrix(
+            @PathVariable Long managerId) {
+
+        return service.getValidationMatrix(managerId);
+    }
+
+    // =====================================================
+// EMPLOYEE - UPDATE PROFILE
+// =====================================================
+
+    @PutMapping("/{id}/profile")
+    public Utilisateur updateProfile(
+            @PathVariable Long id,
+            @RequestBody Utilisateur utilisateur
+    ) {
+
+        return service.updateProfile(
+                id,
+                utilisateur
+        );
+    }
+
 }
+
+

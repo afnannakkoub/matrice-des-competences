@@ -1,12 +1,40 @@
 <div class="navbar-custom">
 
-    <h4>Competency Matrix Management</h4>
+    <h4>
+        Competency Matrix Management
+    </h4>
 
-    <div class="user">
+
+    <div
+        class="user"
+        *ngIf="user">
 
         <i class="bi bi-person-circle"></i>
 
-        Administrator
+
+        <div class="user-info">
+
+            <span class="user-name">
+                {{ getUserName() }}
+            </span>
+
+            <span class="user-role">
+                {{ getUserRole() }}
+            </span>
+
+        </div>
+
+
+        <button
+            class="logout-button"
+            type="button"
+            (click)="logout()">
+
+            <i class="bi bi-box-arrow-right"></i>
+
+            Logout
+
+        </button>
 
     </div>
 

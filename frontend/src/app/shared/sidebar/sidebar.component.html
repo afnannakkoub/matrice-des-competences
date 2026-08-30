@@ -1,33 +1,141 @@
 <div class="sidebar">
 
+    <!-- LOGO -->
     <div class="logo">
-
-     MATRICE DES COMPETENCES
+        MATRICE DES COMPETENCES
     </div>
 
-   <a routerLink="/admin/dashboard" routerLinkActive="active">
-    <i class="bi bi-speedometer2"></i>
-    Dashboard
-</a>
 
-<a routerLink="/admin/users" routerLinkActive="active">
-    <i class="bi bi-people"></i>
-    Users
-</a>
+    <!-- ===================================== -->
+    <!-- ADMIN SIDEBAR -->
+    <!-- ===================================== -->
 
-<a routerLink="/admin/categories" routerLinkActive="active">
-    <i class="bi bi-tags"></i>
-    Categories
-</a>
+    <ng-container *ngIf="currentArea === 'admin'">
 
-<a routerLink="/admin/competences" routerLinkActive="active">
-    <i class="bi bi-award"></i>
-    Competences
-</a>
+        <a
+            routerLink="/admin/dashboard"
+            routerLinkActive="active"
+        >
+            <i class="bi bi-speedometer2"></i>
+            Dashboard
+        </a>
 
-<a routerLink="/admin/reports" routerLinkActive="active">
-    <i class="bi bi-file-earmark-bar-graph"></i>
-    Reports
-</a>
+        <a
+            routerLink="/admin/users"
+            routerLinkActive="active"
+        >
+            <i class="bi bi-people"></i>
+            Users
+        </a>
+
+        <a
+            routerLink="/admin/categories"
+            routerLinkActive="active"
+        >
+            <i class="bi bi-tags"></i>
+            Categories
+        </a>
+
+        <a
+            routerLink="/admin/competences"
+            routerLinkActive="active"
+        >
+            <i class="bi bi-award"></i>
+            Competences
+        </a>
+
+        <a
+            routerLink="/admin/poste-competences"
+            routerLinkActive="active"
+        >
+            <i class="bi bi-diagram-3"></i>
+            Required Competencies
+        </a>
+
+        <a
+            routerLink="/admin/reports"
+            routerLinkActive="active"
+        >
+            <i class="bi bi-file-earmark-bar-graph"></i>
+            Reports
+        </a>
+
+    </ng-container>
+
+
+    <!-- ===================================== -->
+    <!-- MANAGER SIDEBAR -->
+    <!-- ===================================== -->
+
+    <ng-container *ngIf="currentArea === 'manager'">
+
+        <a
+            routerLink="/manager/dashboard"
+            routerLinkActive="active"
+        >
+            <i class="bi bi-speedometer2"></i>
+            Dashboard
+        </a>
+
+        <a
+            routerLink="/manager/team"
+            routerLinkActive="active"
+        >
+            <i class="bi bi-people"></i>
+            My Team
+        </a>
+
+        <a
+            routerLink="/manager/matrix"
+            routerLinkActive="active"
+        >
+            <i class="bi bi-grid-3x3-gap"></i>
+            Skill Matrix
+        </a>
+
+        <a
+            routerLink="/manager/validations"
+            routerLinkActive="active"
+        >
+            <i class="bi bi-check-circle"></i>
+            Validations
+        </a>
+
+        <a
+            routerLink="/manager/statistics"
+            routerLinkActive="active"
+        >
+            <i class="bi bi-bar-chart"></i>
+            Statistics
+        </a>
+
+    </ng-container>
+
+
+    <!-- ===================================== -->
+    <!-- EMPLOYEE SIDEBAR - LATER -->
+    <!-- ===================================== -->
+
+    <ng-container *ngIf="currentArea === 'employee'">
+
+        <a
+            routerLink="/employee/dashboard"
+            routerLinkActive="active"
+        >
+            <i class="bi bi-speedometer2"></i>
+            Dashboard
+        </a>
+
+        <a
+            routerLink="/employee/profile"
+            routerLinkActive="active"
+        >
+            <i class="bi bi-person"></i>
+            My Profile
+        </a>
+
+        
+
+    </ng-container>
 
 </div>

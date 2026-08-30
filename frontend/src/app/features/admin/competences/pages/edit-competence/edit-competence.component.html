@@ -1,0 +1,25 @@
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header">
+
+            <h3>Edit Competence</h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <app-competence-form
+
+                [competence]="competence"
+
+                (saveCompetence)="update($event)">
+
+            </app-competence-form>
+
+        </div>
+
+    </div>
+
+</div>

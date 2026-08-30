@@ -1,0 +1,488 @@
+.skill-matrix-page {
+
+    padding: 35px 40px;
+
+    background: #f5f6fa;
+
+    min-height: 100vh;
+
+}
+
+
+/* ========================================= */
+/* HEADER */
+/* ========================================= */
+
+.page-header {
+
+    margin-bottom: 30px;
+
+}
+
+.page-header h1 {
+
+    margin: 0;
+
+    font-size: 32px;
+
+    font-weight: 700;
+
+    color: #24324a;
+
+}
+
+.page-header p {
+
+    margin-top: 6px;
+
+    color: #7a8496;
+
+}
+
+
+/* ========================================= */
+/* EMPLOYEE SELECTOR */
+/* ========================================= */
+.employee-select-container {
+
+    padding: 20px 25px;
+
+}
+
+.employee-select {
+
+    width: 100%;
+
+    padding: 13px 16px;
+
+    border: 1px solid #d9dde5;
+
+    border-radius: 8px;
+
+    background: white;
+
+    color: #26344d;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    outline: none;
+
+}
+
+.employee-select:focus {
+
+    border-color: #613dcc;
+
+    box-shadow: 0 0 0 3px rgba(97, 61, 204, 0.1);
+
+}
+
+
+/* ========================================= */
+/* EMPLOYEE BAR */
+/* ========================================= */
+
+.employee-list {
+
+    padding: 10px;
+
+}
+
+.employee-bar {
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 15px 18px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+
+    margin-bottom: 6px;
+
+}
+
+.employee-bar:hover {
+
+    background: #f2f4f8;
+
+}
+
+.employee-bar.selected {
+
+    background: #eeeaff;
+
+    border-left: 4px solid #613dcc;
+
+}
+
+
+/* Avatar */
+
+.employee-avatar {
+
+    width: 45px;
+
+    height: 45px;
+
+    border-radius: 50%;
+
+    background: #e8e1ff;
+
+    color: #5b36c7;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: 700;
+
+    font-size: 14px;
+
+    margin-right: 15px;
+
+}
+
+
+/* Information */
+
+.employee-info {
+
+    flex: 1;
+
+}
+
+.employee-name {
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    color: #26344d;
+
+}
+
+.employee-position {
+
+    margin-top: 3px;
+
+    font-size: 13px;
+
+    color: #8992a3;
+
+}
+
+
+/* Arrow */
+
+.employee-arrow {
+
+    font-size: 28px;
+
+    color: #9ca4b3;
+
+}
+
+
+/* ========================================= */
+/* EMPLOYEE BANNER */
+/* ========================================= */
+
+.employee-banner {
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 28px;
+
+    margin-bottom: 25px;
+
+    border-radius: 12px;
+
+    background: #202938;
+
+    color: white;
+
+}
+
+.banner-avatar {
+
+    width: 65px;
+
+    height: 65px;
+
+    border-radius: 50%;
+
+    background: #5543a8;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: 700;
+
+    margin-right: 20px;
+
+}
+
+.banner-info h2 {
+
+    margin: 0;
+
+    font-size: 24px;
+
+}
+
+.banner-info p {
+
+    margin: 7px 0 0;
+
+    color: #b8bfcc;
+
+    font-size: 13px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+}
+
+.banner-info p span {
+
+    margin: 0 8px;
+
+}
+
+
+/* ========================================= */
+/* ACTION PLAN */
+/* ========================================= */
+
+.action-plan-card {
+
+    background: white;
+
+    border-radius: 12px;
+
+    border: 1px solid #e2e5eb;
+
+    overflow: hidden;
+
+}
+
+.action-plan-header {
+
+    padding: 25px;
+
+    border-bottom: 1px solid #e9ebef;
+
+}
+
+.action-plan-header h2 {
+
+    margin: 0;
+
+    font-size: 20px;
+
+    color: #26344d;
+
+}
+
+.action-plan-header p {
+
+    margin: 8px 0 0;
+
+    color: #7d8797;
+
+}
+
+
+/* ========================================= */
+/* TABLE */
+/* ========================================= */
+
+.table-container {
+
+    overflow-x: auto;
+
+}
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+}
+
+thead {
+
+    background: #f8f9fb;
+
+}
+
+th {
+
+    padding: 15px 18px;
+
+    text-align: left;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    color: #7a8495;
+
+    letter-spacing: 0.4px;
+
+}
+
+td {
+
+    padding: 16px 18px;
+
+    border-top: 1px solid #edf0f4;
+
+    color: #3a4558;
+
+}
+
+.skill-name {
+
+    font-weight: 600;
+
+    color: #27354c;
+
+}
+
+
+/* ========================================= */
+/* SCORE */
+/* ========================================= */
+
+.score {
+
+    display: inline-flex;
+
+    width: 34px;
+
+    height: 30px;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 7px;
+
+    font-weight: 700;
+
+}
+
+.score.required {
+
+    background: #eef0f4;
+
+    color: #5f6877;
+
+}
+
+.level-0 {
+
+    background: #e8e9ec;
+
+    color: #646b76;
+
+}
+
+.level-1 {
+
+    background: #dceaff;
+
+    color: #2867c7;
+
+}
+
+.level-2 {
+
+    background: #fff0bd;
+
+    color: #9a7200;
+
+}
+
+.level-3 {
+
+    background: #ffe0c2;
+
+    color: #b65d00;
+
+}
+
+.level-4 {
+
+    background: #d8f4df;
+
+    color: #27853b;
+
+}
+
+
+/* ========================================= */
+/* PRIORITY */
+/* ========================================= */
+
+.priority {
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+.priority.pending {
+
+    background: #eef0f3;
+
+    color: #7b8390;
+
+}
+
+
+/* ========================================= */
+/* TRAINING */
+/* ========================================= */
+
+.training-button {
+
+    border: none;
+
+    background: transparent;
+
+    color: #5b3bc4;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+.training-button:hover {
+
+    text-decoration: underline;
+
+}

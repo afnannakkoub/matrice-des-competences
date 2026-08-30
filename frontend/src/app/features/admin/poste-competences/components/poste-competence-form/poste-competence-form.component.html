@@ -1,0 +1,101 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+    <!-- Position -->
+
+    <div class="mb-3">
+
+        <label class="form-label">
+
+            Position
+
+        </label>
+
+    <select
+      class="form-select"
+      formControlName="poste">
+
+      <option 
+        *ngFor="let poste of postes"
+        [value]="poste">
+
+        {{ poste }}
+
+      </option>
+
+</select>
+
+    </div>
+
+    <!-- Competence -->
+
+    <div class="mb-3">
+
+        <label class="form-label">
+
+            Competency
+
+        </label>
+
+        <select
+            class="form-select"
+            formControlName="competence">
+
+            <option [ngValue]="null">
+
+                Select a competency
+
+            </option>
+
+            <option
+                *ngFor="let competence of competences"
+                [ngValue]="competence">
+
+                {{ competence.nom }}
+
+            </option>
+
+        </select>
+
+    </div>
+
+    <!-- Required Level -->
+
+    <div class="mb-3">
+
+        <label class="form-label">
+
+            Required Level
+
+        </label>
+
+        <select
+            class="form-select"
+            formControlName="niveauRequis">
+
+            <option
+                *ngFor="let niveau of niveaux"
+                [value]="niveau">
+
+                {{ niveau }}
+
+            </option>
+
+        </select>
+
+    </div>
+
+    <!-- Save -->
+
+    <div class="text-end">
+
+        <button
+            class="btn btn-primary"
+            type="submit">
+
+            Save
+
+        </button>
+
+    </div>
+
+</form>

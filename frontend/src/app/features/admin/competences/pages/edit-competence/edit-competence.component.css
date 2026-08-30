@@ -1,0 +1,21 @@
+.card{
+
+    border:none;
+
+    border-radius:15px;
+
+}
+
+.card-header{
+
+    background:#5b3cc4;
+
+    color:white;
+
+}
+
+.card-header h3{
+
+    margin:0;
+
+}
