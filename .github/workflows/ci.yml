@@ -5,10 +5,30 @@ on:
     branches: [ main ]
 
 jobs:
+  # Job 1: No dependencies (runs immediately)
+  backend:
+    name: Test Backend
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Run Backend Tests
+        run: echo "Testing backend..."
+
+  # Job 2: No dependencies (runs in parallel with backend)
+  frontend:
+    name: Test Frontend
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Run Frontend Tests
+        run: echo "Testing frontend..."
+
+  # Job 3: Depends on backend and frontend
   docker:
     name: Build and Push Docker Images
     runs-on: ubuntu-latest
-
     needs:
       - backend
       - frontend
